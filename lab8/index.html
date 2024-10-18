@@ -35,7 +35,7 @@
 
     <!-- The "div" tag delineates a "division" or section of the HTML page.-->
     <div id="map"></div>
-    
+
     <div class="map-overlay">
         <div class="map-overlay-inner">
             <h2>Public and Affordable Housing Flood Risk</h2>
@@ -50,20 +50,20 @@
                     href="https://www.nytimes.com/2017/04/18/magazine/when-rising-seas-transform-risk-into-certainty.html">promise</a>
                 of more flooding, which areas and <i>who</i> will likely be most affected? How is affordable housing
                 construction responding to this? </p>
-                <div id='menu'>
-                    <label class='check-container'>
-                        Sandy Inundation Zone
-                        <input id='floodZones' type='checkbox' name='viz-toggle' checked='checked'>
-                      </label>
-                    <label class='check-container'>
-                        NYCHA Buildings
-                        <input id='nychaBuildings' type='checkbox' name='viz-toggle' checked='checked'>
-                    </label>
-                    <label class='check-container'>
-                        +300 People Below Poverty Line
-                        <input id='povertyLevel' type='checkbox' name='viz-toggle' checked='checked'>
-                    </label>
-                  </div>
+            <div id='menu'>
+                <label class='check-container'>
+                    Sandy Inundation Zone
+                    <input id='floodZones' type='checkbox' name='viz-toggle' checked='checked'>
+                </label>
+                <label class='check-container'>
+                    NYCHA Buildings
+                    <input id='nychaBuildings' type='checkbox' name='viz-toggle' checked='checked'>
+                </label>
+                <label class='check-container'>
+                    +300 People Below Poverty Line
+                    <input id='povertyLevel' type='checkbox' name='viz-toggle' checked='checked'>
+                </label>
+            </div>
         </div>
 
     </div>
@@ -96,34 +96,34 @@
                 'url': 'mapbox://iamwfx.6nowkujs'
             });
 
-            map.addSource('2020 predicted floodplains (1 in 100 year flood)Layer', {
+            map.addSource('2020 predicted floodplains (1 in 100 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.bbchggzx'
+                'url': 'mapbox://iamwfx.bbchggzx'
             });
 
-            map.addSource('2020 predicted floodplains (once in 500 year flood)Layer', {
+            map.addSource('2020 predicted floodplains (once in 500 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.05ogder8'
+                'url': 'mapbox://iamwfx.05ogder8'
             });
 
             map.addSource('2050 predicted floodplains (once in 100 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.crrx4301'
+                'url': 'mapbox://iamwfx.crrx4301'
             });
 
             map.addSource('2050 predicted floodplains (once in 500 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.4ydk0450'
+                'url': 'mapbox://iamwfx.4ydk0450'
             });
 
             map.addSource('2100 predicted floodplains (once in 100 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.dxjuiivg'
+                'url': 'mapbox://iamwfx.dxjuiivg'
             });
 
             map.addSource('2100 predicted floodplains (once in 500 year flood)', {
                 'type': 'vector',
-                'url': ' mapbox://iamwfx.8thgevrt'
+                'url': 'mapbox://iamwfx.8thgevrt'
             });
 
             // add a new layer with your polygons
@@ -139,7 +139,7 @@
                             'step',
                             ['get', 'AMR5E002'],
                             'transparent',
-                            300, '#f5ef42', 
+                            300, '#f5ef42',
                         ]
                     ,
                     'fill-opacity': 0.9
@@ -165,42 +165,115 @@
                 'source-layer': 'Sandy_Inundation_Zone-4qcajo',
                 'paint': {
                     'fill-color': '#00158f',
-                    'fill-opacity': 0.5
+                    'fill-opacity': 0.1
                 }
             });
 
             map.addLayer({
                 'id': 'floodZones2',
                 'type': 'fill',
-                'source': 'sandyLayer',
-                'source-layer': 'Sandy_Inundation_Zone-4qcajo',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.bbchggzx'
+                },
+                'source-layer': 'FutureFloodplains_2020_100yr-du18hr',
                 'paint': {
                     'fill-color': '#00158f',
-                    'fill-opacity': 0.5
+                    'fill-opacity': 0.1
                 }
             });
 
-            map.setLayoutProperty('floodZones',"visibility", "visible");
-map.setLayoutProperty('povertyLevel',"visibility", "visible");
-map.setLayoutProperty('nychaBuildings',"visibility", "visible");
+            map.addLayer({
+                'id': 'floodZones3',
+                'type': 'fill',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.05ogder8'
+                },
+                'source-layer': 'FutureFloodplains_2020_500yr-0x77x0',
+                'paint': {
+                    'fill-color': '#00158f',
+                    'fill-opacity': 0.1
+                }
+            });
 
-var layerList = document.getElementById("menu");
-var checkboxes = layerList.getElementsByTagName("input");
+            map.addLayer({
+                'id': 'floodZones4',
+                'type': 'fill',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.crrx4301'
+                },
+                'source-layer': 'FutureFloodplains_2050_100yr-6nepei',
+                'paint': {
+                    'fill-color': '#00158f',
+                    'fill-opacity': 0.1
+                }
+            });
 
-function switchLayer(layer) {
-    var clickedLayersLabel = layer.target.id; // get the label of the layer cluster
-    var clickedLayers = eval(clickedLayersLabel); // create the variable from the label using the eval function
-    var visibility = map.getLayoutProperty(clickedLayersLabel, "visibility"); // check whether the cluster of layers is visible by checking the first entry
-    if (visibility === "visible") {
-      map.setLayoutProperty(clickedLayersLabel, "visibility", "none")
-    } else {
-      map.setLayoutProperty(clickedLayersLabel, "visibility", "visible")
-    }
-}
+            map.addLayer({
+                'id': 'floodZones5',
+                'type': 'fill',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.4ydk0450'
+                },
+                'source-layer': 'FutureFloodplains_2050_500yr-a4444h',
+                'paint': {
+                    'fill-color': '#00158f',
+                    'fill-opacity': 0.1
+                }
+            });
 
-for (var i = 0; i < checkboxes.length; i++) {
-  checkboxes[i].onclick = switchLayer;
-}
+            map.addLayer({
+                'id': 'floodZones6',
+                'type': 'fill',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.dxjuiivg'
+                },
+                'source-layer': 'FutureFloodplains_2100_100yr-cqwfrw',
+                'paint': {
+                    'fill-color': '#00158f',
+                    'fill-opacity': 0.1
+                }
+            });
+
+            map.addLayer({
+                'id': 'floodZones7',
+                'type': 'fill',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://iamwfx.8thgevrt'
+                },
+                'source-layer': 'FutureFloodplains_2100_500yr-27ghpw',
+                'paint': {
+                    'fill-color': '#00158f',
+                    'fill-opacity': 0.1
+                }
+            });
+
+            map.setLayoutProperty('floodZones', "visibility", "visible");
+            map.setLayoutProperty('povertyLevel', "visibility", "visible");
+            map.setLayoutProperty('nychaBuildings', "visibility", "visible");
+
+            var layerList = document.getElementById("menu");
+            var checkboxes = layerList.getElementsByTagName("input");
+
+            function switchLayer(layer) {
+                var clickedLayersLabel = layer.target.id; // get the label of the layer cluster
+                var clickedLayers = eval(clickedLayersLabel); // create the variable from the label using the eval function
+                var visibility = map.getLayoutProperty(clickedLayersLabel, "visibility"); // check whether the cluster of layers is visible by checking the first entry
+                if (visibility === "visible") {
+                    map.setLayoutProperty(clickedLayersLabel, "visibility", "none")
+                } else {
+                    map.setLayoutProperty(clickedLayersLabel, "visibility", "visible")
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].onclick = switchLayer;
+            }
 
 
 
@@ -215,7 +288,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 
 
         });
-  // Within a script, you comment using two backslashes.
+        // Within a script, you comment using two backslashes.
     </script>
 </body>
 
