@@ -50,6 +50,8 @@
                 construction responding to this? </p>
 
             <div id='menu'>
+                <button id="flyButton">Fly to Brooklyn Building</button>
+
                 <!-- <h3>Housing Type</h3> -->
                 <label class='check-container'>
                     Affordable Housing Types
@@ -130,6 +132,8 @@
         // You'll be inserting your JS code to initialize your map here
         mapboxgl.accessToken = 'pk.eyJ1Ijoia3g2NCIsImEiOiJjbGkzd2E1dmsxMzNoM2twY2p2azF0bGVlIn0.t_v73kaAMUtoGBPESpw3uA';
         const map = new mapboxgl.Map({
+            pitch: 0,
+            bearing: 0,
             container: 'map', // container id
             style: 'mapbox://styles/iamwfx/cl9519asg003414pl56w7ov95', // replace this with your style URL
             center: [-73.935242, 40.730610], // The convention for coordinates is  typically [long, lat]
@@ -137,6 +141,22 @@
             // maxZoom: 22,
             minZoom: 12
         });
+
+        const brooklynBuildingCoordinates = [-73.9857, 40.6945]; 
+        const buildingZoom = 18; 
+
+        function flyToBuilding() {
+            map.flyTo({
+                center: brooklynBuildingCoordinates,
+                zoom: buildingZoom,
+                pitch: 45, 
+                bearing: 0, 
+                speed: 1.5, 
+                curve: 1, 
+                essential: true 
+            });
+        }
+        document.getElementById('flyButton').addEventListener('click', flyToBuilding);
 
         map.on('load', function () {
             // Give your layer's source a nickname you'll remember easily.
@@ -294,7 +314,7 @@
                     'fill-opacity': 0.3
                 }
             });
-            
+
 
             map.addLayer({
                 'id': 'affHousing',
@@ -365,11 +385,11 @@
 
 
             const popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false
-  });
+                closeButton: false,
+                closeOnClick: false
+            });
 
-        map.on('mouseenter', 'affHousing', function (e) {
+            map.on('mouseenter', 'affHousing', function (e) {
                 const coordinates = e.features[0].geometry.coordinates.slice();
 
                 function emptyToYesNo(val) {
@@ -377,7 +397,7 @@
                         return "Yes"
                     } else { return "No" };
                 }
-                
+
                 const Address = e.features[0].properties.Address;
                 const BBL = e.features[0].properties.BBL;
                 const Council = e.features[0].properties.Council;
@@ -395,17 +415,17 @@
 
                 popup.setLngLat(coordinates[0][0]).setHTML(description).addTo(map);
             });
-    
-        map.on('mouseleave', 'affHousing', function () {
-            map.getCanvas().style.cursor = '';
-            popup.remove();
+
+            map.on('mouseleave', 'affHousing', function () {
+                map.getCanvas().style.cursor = '';
+                popup.remove();
+            });
+
         });
 
-    });
 
 
 
-      
 
 
         // Within a script, you comment using two backslashes.
