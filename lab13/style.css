@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  #Curtis {
+    position: fixed;
+    
+    top: 0;
+    bottom: 0;
+    width: 80%; } 
+
+
+
+    #toolbar{
+        top:10px;
+        margin-right:10px;
+    }
