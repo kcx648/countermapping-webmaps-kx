@@ -12,8 +12,8 @@ var config = {
     title: 'Housing Retrofit for Environmental and Social Resilience',
     subtitle: 'Human-centric decarbonization for NYC public housing through multi-objective optimization',
     byline: 'By Curtis Xu',
-    para1:'This project explores the intersecting crises of decarbonization and public housing, focusing on a visualization narrative that explores the future of sustainable living, housing justice, and health equity. As the building and construction sector is responsible for a significant portion of global CO2 emissions, cities like New York are implementing aggressive decarbonization policies, such as Local Law 97, which targets carbon neutrality by 2050. However, these initiatives often overlook the lived experiences of marginalized and low-income communities who reside in public housing. ',
-    para2:'This study aims to address this gap by incorporating resident perspectives and health considerations into decarbonization strategies. By developing interactive maps powered by Mapbox, the project will compare current decarbonization efforts with the everyday challenges faced by public housing residents. By layering data from both official data from NYC Open Data and resident voices sourced from platforms like Vice and CityLimits, the study will offer insights into areas where decarbonization efforts fall short. This human-centric, data-driven approach aims to inspire a more equitable decarbonization strategy by highlighting the specific needs of public housing residents, ultimately fostering a more sustainable and socially resilient future for low-income communities.',
+    para1:'This project explores the intersecting crises of decarbonization and public housing, focusing on a visualization narrative that explores the future of sustainable living, housing justice, and health equity. As the building and construction sector is responsible for a significant portion of global CO2 emissions, cities like New York are implementing aggressive decarbonization policies, such as Local Law 97, which targets carbon neutrality by 2050. However, these initiatives often overlook the lived experiences of marginalized and low-income communities who reside in public housing. This study aims to address this gap by incorporating resident perspectives and health considerations into decarbonization strategies. By developing interactive maps powered by Mapbox, the project will compare current decarbonization efforts with the everyday challenges faced by public housing residents. By layering data from both official data from NYC Open Data and resident voices sourced from platforms like Vice and CityLimits, the study will offer insights into areas where decarbonization efforts fall short. This human-centric, data-driven approach aims to inspire a more equitable decarbonization strategy by highlighting the specific needs of public housing residents, ultimately fostering a more sustainable and socially resilient future for low-income communities.',
+    
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
@@ -155,7 +155,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Public Housing with more than 3 problems',
-            description: "New York City's public housing facilities, managed by the New York City Housing Authority (NYCHA), have faced significant challenges, including deteriorating infrastructure, health hazards, and safety concerns. Many developments suffer from issues like mold, lead paint, and unreliable heating systems, compromising residents' well-being. For instance, the Louis Heaton Pink Houses in Brooklyn have experienced problems such as non-functioning stairway lights and heating outages during winter, leading to unsafe living conditions.",
+            description: 'Maribette Cortes and three other family members suffer from asthma. There is mold in her bathroom. Melrose Houses, Bronx, NY, 2012.',
             location: {
                 center: [-73.99764, 40.71701],
                 zoom: 10,
@@ -165,7 +165,7 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            image: './images/problem.webp',
+            image: './images/problem.jpg',
             onChapterEnter: [
                 {
                     layer: 'housing-problem',

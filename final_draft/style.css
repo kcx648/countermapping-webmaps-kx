@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Merriweather", serif;
+    font-family: "open sans", serif;
 }
 
 a,
@@ -71,7 +71,7 @@ a:visited {
 
 #header p {
     margin: 0;
-    font-size: 2vh;
+    font-size: 1.5vh;
     text-align: justify;
     margin-left: 34vw;
     margin-right: 34vw;
