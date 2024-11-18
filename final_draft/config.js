@@ -7,10 +7,13 @@ var config = {
     //Read more about available projections here
     //https://docs.mapbox.com/mapbox-gl-js/example/projections/
     inset: false,
-    theme: 'dark',
+    theme: 'light',
     use3dTerrain: true,
     title: 'Housing Retrofit for Environmental and Social Resilience',
     subtitle: 'Human-centric decarbonization for NYC public housing through multi-objective optimization',
+    byline: 'By Curtis Xu',
+    para1:'This project explores the intersecting crises of decarbonization and public housing, focusing on a visualization narrative that explores the future of sustainable living, housing justice, and health equity. As the building and construction sector is responsible for a significant portion of global CO2 emissions, cities like New York are implementing aggressive decarbonization policies, such as Local Law 97, which targets carbon neutrality by 2050. However, these initiatives often overlook the lived experiences of marginalized and low-income communities who reside in public housing. ',
+    para2:'This study aims to address this gap by incorporating resident perspectives and health considerations into decarbonization strategies. By developing interactive maps powered by Mapbox, the project will compare current decarbonization efforts with the everyday challenges faced by public housing residents. By layering data from both official data from NYC Open Data and resident voices sourced from platforms like Vice and CityLimits, the study will offer insights into areas where decarbonization efforts fall short. This human-centric, data-driven approach aims to inspire a more equitable decarbonization strategy by highlighting the specific needs of public housing residents, ultimately fostering a more sustainable and socially resilient future for low-income communities.',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
@@ -37,7 +40,7 @@ var config = {
             id: 'red-hook',
             alignment: 'right',
             hidden: false,
-            title: 'Red Hook House',
+            title: 'Red Hook Houses and its Flooding Risk',
             description: 'But on Oct. 29, 2012, the water turned against Red Hook. The winds of Hurricane Sandy, striking at high tide, created a massive storm surge that pushed hundreds of millions of gallons of water onto and over New York’s shoreline. The resulting flood would cause $19 billion in damage throughout New York City, killing dozens of people, but Red Hook, which is so low-lying that nearly the entire community fell with the city’s mandatory evacuation zone, bore some of the worst of the storm’s wrath.',
             location: {
 
@@ -49,7 +52,7 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: true,
             callback: '',
-            image: './images/red.jpg',
+            image: './images/redhook.webp',
             onChapterEnter: [
                 {
                     layer: 'public',
@@ -152,7 +155,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Public Housing with more than 3 problems',
-            description: 'Maribette Cortes and three other family members suffer from asthma. There is mold in her bathroom. Melrose Houses, Bronx, NY, 2012.',
+            description: "New York City's public housing facilities, managed by the New York City Housing Authority (NYCHA), have faced significant challenges, including deteriorating infrastructure, health hazards, and safety concerns. Many developments suffer from issues like mold, lead paint, and unreliable heating systems, compromising residents' well-being. For instance, the Louis Heaton Pink Houses in Brooklyn have experienced problems such as non-functioning stairway lights and heating outages during winter, leading to unsafe living conditions.",
             location: {
                 center: [-73.99764, 40.71701],
                 zoom: 10,
@@ -162,13 +165,50 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            image: './images/problem.jpg',
+            image: './images/problem.webp',
             onChapterEnter: [
                 {
                     layer: 'housing-problem',
                     opacity: 1,
                     duration: 1000
                 },
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+        {
+            id: 'polo-ground-tower',
+            alignment: 'right',
+            hidden: false,
+            title: 'Maintaining NYCHA: Debunking the Myth of Unmanageable High-Rise Public Housing',
+            description: 'Nearly every manager I spoke with stressed the crucial importance of daily custodial functions in maintaining the livability of NYCHA developments, no matter the location. Significant daily vandalism and littering could, within just a few days, make development grounds entirely unlivable.',
+            location: {
+                center: [-73.93753, 40.83020],
+                zoom: 15.80,
+                pitch: 45.00,
+                bearing: -40.00
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            image: './images/worker.webp',
+            onChapterEnter: [
                 {
                     layer: 'public',
                     opacity: 1,
