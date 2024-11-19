@@ -5,46 +5,80 @@
 <html>
 
 <!-- All the metadata and packages/tools we'll use go in here-->
+
 <head>
 
-<!-- The charset attribute specifies the character encoding for the HTML document.-->
-<meta charset="utf-8" />
+    <!-- The charset attribute specifies the character encoding for the HTML document.-->
+    <meta charset="utf-8" />
 
-<!-- The title of your page, which will appear in the browser tab -->
-<title>San Franciscos</title>
+    <!-- The title of your page, which will appear in the browser tab -->
+    <title>San Franciscos</title>
 
-<!-- The size of the viewport vs the rendered page -->
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <!-- The size of the viewport vs the rendered page -->
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-<!-- We are going to call the Mapbox GL javascript library, which will allow us to use its functionality -->
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <!-- We are going to call the Mapbox GL javascript library, which will allow us to use its functionality -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 
-<!-- Alongside this, we are going to bring in the Mapbox GL stylesheet -->
+    <!-- Alongside this, we are going to bring in the Mapbox GL stylesheet -->
 
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 
-<link href='style.css' rel='stylesheet' />
+    <link href='style.css' rel='stylesheet' />
 
-<!-- This allows us to bring in new fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- This allows us to bring in new fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <!-- The body contains the actual content of a page -->
+
 <body>
 
-<!-- The "div" tag delineates a "division" or section of the HTML page.-->
+    <!-- The "div" tag delineates a "division" or section of the HTML page.-->
 
 
-<div id="Curtis"></div>
+    <div id="Curtis"></div>
 
+    <script src="script.js"></script>
 
-<div id="toolbar">
-    <div id='title'>
-        <h1>Food Inspections in San Francisco</h1>
+    <div id="toolbar">
+        <div id='title'>
+            <h1>Food Inspections in San Francisco</h1>
+        </div>
+        <div id='restName'>
+            <h4>Restaurant Name</h4>
+        </div>
+        <div id='restText'>
+            test text
+        </div>
+        <div id="legend" style="font-size: 12px; padding: 10px; max-width: 200px;">
+            <div style="margin-top: 10px;">
+              <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background: #440154; margin-right: 10px;"></div>
+                [45 - 80)
+              </div>
+              <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background: #3b528b; margin-right: 10px;"></div>
+                [80 - 85)
+              </div>
+              <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background: #21908d; margin-right: 10px; "></div>
+                [85 - 90)
+              </div>
+              <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background: #5dc963; margin-right: 10px; "></div>
+                [90 - 95)
+              </div>
+              <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background: #fde725; margin-right: 10px; "></div>
+                [95 - 100]
+              </div>
+            </div>
+          </div>
+          
     </div>
-</div>
 
-<script src="script.js"></script>
+ 
 </body>
 
 </html>

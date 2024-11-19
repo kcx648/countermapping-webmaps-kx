@@ -19,7 +19,27 @@ map.on('load', function () {
         'source': 'point',
         'source-layer': 'Historical_Restaurant_Inspect-0x9ipt',
         'paint': {
-            'circle-color': '#008F8C'
+          'circle-color': [
+            'step',
+            ['to-number', ['get', 'inspection_score'], -1],
+            '#dddddd', 
+            45, '#440154', 
+            80, '#3b528b', 
+            85, '#21908d', 
+            90, '#5dc963', 
+            95, '#fde725'  
+        ]
         }
     });
+
+    console.log('My name is Curtis');
+
+    map.on('mouseenter', 'point', (e) => {
+        console.log(e.features[0]['properties']['business_name'])
+        var name = e.features[0]['properties']['business_name'];
+        var textField = document.getElementById('restText');
+        textField.innerHTML = name;
+        
+    })
 })
+
