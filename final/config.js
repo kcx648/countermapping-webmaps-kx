@@ -145,7 +145,7 @@ var config = {
             id: 'red-hook',
             alignment: 'right',
             hidden: false,
-            title: 'Case 02: Red Hook Houses and its Flooding Risk',
+            title: 'Case 03: Red Hook Houses and its Flooding Risk',
             description: 'But on Oct. 29, 2012, the water turned against Red Hook. The winds of Hurricane Sandy, striking at high tide, created a massive storm surge that pushed hundreds of millions of gallons of water onto and over New York’s shoreline. The resulting flood would cause $19 billion in damage throughout New York City, killing dozens of people, but Red Hook, which is so low-lying that nearly the entire community fell with the city’s mandatory evacuation zone, bore some of the worst of the storm’s wrath.',
             location: {
 
@@ -222,7 +222,7 @@ var config = {
             id: 'melrose-houses',
             alignment: 'right',
             hidden: false,
-            title: 'Case 03: Melrose House and Asthma Issues',
+            title: 'Case 05: Melrose House and Asthma Issues',
             description: 'Maribette Cortes and three other family members suffer from asthma. There is mold in her bathroom. Melrose Houses, Bronx, NY, 2012.',
             location: {
                 center: [-73.91948, 40.82077],
@@ -234,6 +234,44 @@ var config = {
             rotateAnimation: true,
             callback: '',
             image: './images/melrose.jpg',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+        {
+            id: 'jackson-houses',
+            alignment: 'right',
+            hidden: false,
+            title: 'Case 06: Jackson House and Mold Issues',
+            description: 'Shakisha, 27 years old, has been diagnosed with mold inside her body. Her house has infiltration problems in the bathroom and in the living room. Jackson Houses, Bronx, NY, 2012.',
+            location: {
+
+center: [-73.91810, 40.82237],
+zoom: 18.29,
+pitch: 58.00,
+bearing: -23.20
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            image: './images/jackson.jpeg',
             onChapterEnter: [
                 {
                     layer: 'public',
@@ -301,7 +339,7 @@ var config = {
             id: 'polo-ground-tower',
             alignment: 'right',
             hidden: false,
-            title: 'Case 04: Polo Ground Tower and Building Deficiencies',
+            title: 'Case 07: Polo Ground Tower and Building Deficiencies',
             description: 'Nearly every manager I spoke with stressed the crucial importance of daily custodial functions in maintaining the livability of NYCHA developments, no matter the location. Significant daily vandalism and littering could, within just a few days, make development grounds entirely unlivable.',
             location: {
                 center: [-73.93753, 40.83020],
@@ -338,7 +376,7 @@ var config = {
             id: 'resident-problems',
             alignment: 'right',
             hidden: false,
-            title: "Case 05: Redfern House: Maintainence Efficiency and Resident's Life",
+            title: "Case 08: Redfern House: Maintainence Efficiency and Resident's Life",
             description: "The survey sought residents’ experiences with NYCHA management’s responses to these, and other, concerns. 41 percent of residents had problems with NYCHA management. It is also noteworthy that this question had the highest rate of ​“no response” of any of the survey questions, indicating a possible reluctance on the part of residents to identify problems they may have had with management.",
             location: {
                 center: [-73.75178, 40.61036],
