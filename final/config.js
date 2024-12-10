@@ -84,6 +84,7 @@ var config = {
                 }
             ]
         },
+        
         {
             id: 'youth-seniors',
             alignment: 'right',
@@ -158,6 +159,39 @@ var config = {
             rotateAnimation: true,
             callback: '',
             image: './images/redhook.webp',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                }
+            ]
+        },
+        {
+            id: 'red-hook2',
+            alignment: 'right',
+            hidden: false,
+            title: 'Case 04: Red Hook Houses After 12 Years:Residents Still Living in a Construction Zone',
+            description: 'These are “massive, complex projects that take years to design and years to build,” the Department of Environmental Protection’s commissioner, Rohit Aggarwala, said in April. While he promised that “several” of these will be delivered “within two to three years,” he admitted that “none are complete and fully functional” yet.',
+            location: {
+
+                center: [-74.00740, 40.67630],
+                zoom: 17.09,
+                pitch: 71.00,
+                bearing: -41.26
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            image: './images/redhook2.jpg',
             onChapterEnter: [
                 {
                     layer: 'public',
