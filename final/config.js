@@ -444,6 +444,164 @@ bearing: -23.20
             ]
         },
 
+        {
+            id: 'lincoln-houses',
+            alignment: 'right',
+            hidden: false,
+            title: "E: Human-centric Retrofit Proposal",
+            description: "Based on our analysis of human-centric issues, we propose a retrofit strategy focused on enhancing the human experience for public housing in NYC. For this project, we selected Riverton Square as our case study due to its comprehensive data on building occupancy and energy consumption. Our objective is to develop a workflow that serves as a scalable prototype, which can be applied to similar housing cases, such as Lincoln Houses—a nearby public housing development built in the same year.", 
+            location: {
+                center: [-73.93631, 40.81266],
+                zoom: 17.21,
+                pitch: 45.00,
+                bearing: -40.00
+            },
+            mapAnimation: 'flyTo',
+            callback: '',
+            image: './images/ri-li.png',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                },
+                {
+                    layer: 'flooding',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+
+        {
+            id: 'ii. building-information',
+            alignment: 'right',
+            hidden: false,
+            title: "Case 09 Riverton House: i. Energy & Carbon Information",
+            description: "Here is the EUI and carbon emissions graph for Riverton Square, clearly showing that its performance is significantly below average compared to other multifamily housing. Most critically, Riverton's current carbon emissions have already exceeded the allowable threshold, which could lead to substantial penalties. Based on our calculations, both the EUI and carbon emissions require a 70% reduction to meet the 2030 target.",
+            location: {
+                center: [-73.93631, 40.81266],
+                zoom: 17.21,
+                pitch: 45.00,
+                bearing: -40.00
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            image: './images/car_en.png',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+
+        {
+            id: 'ii. building-retrofit',
+            alignment: 'right',
+            hidden: false,
+            title: "Case 09 Riverton House: ii. building-centric retrofit",
+            description: "Based on the data analysis, I propose an initial version of the retrofit design, illustrating what a traditional building-focused retrofit might look like for a residential tower like Riverton Square. The proposed retrofit strategies focus on structural and equipment upgrades, which are currently the most common approaches for improving building performance. Our evaluation shows that these upgrades have the potential to reduce the building's energy consumption and carbon emissions by up to 70%, aligning with the 2030 targets.",
+            location: {
+center: [-73.93641, 40.81276],
+zoom: 18.26,
+pitch: 60.00,
+bearing: -14.40
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            image: './images/building_retrofit.png',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+
+        {
+            id: 'iii. human-retrofit',
+            alignment: 'right',
+            hidden: false,
+            title: "Case 09 Riverton House: iii. human-centric retrofit",
+            description: "While the initial design effectively addresses carbon emissions and daylight issues, it raises a deeper question: how can we shift the retrofit process from being building-focused to prioritizing the living experience of residents? By reimagining system upgrades as three-dimensional spatial design and addressing individual problems—such as maximizing daylight or enhancing thermal comfort—through a human-centric lens, I developed a series of idea drafts. These, combined with the data-driven analysis, form the second version of a human-focused retrofit proposal. This approach ensures that retrofits not only meet sustainability goals but also improve the quality of life for residents. By starting with the residents’ needs, the proposal demonstrates how design can create a meaningful balance between environmental performance and human experience.",
+            location: {
+center: [-73.93641, 40.81276],
+zoom: 18.26,
+pitch: 40.00,
+bearing: -14.40
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            image: './images/human_retrofit.png',
+            onChapterEnter: [
+                {
+                    layer: 'public',
+                    opacity: 1,
+                    duration: 1000
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'public',
+                    opacity: 0,
+                    duration: 1000
+
+                },
+                {
+                    layer: 'asthma',
+                    opacity: 0,
+                    duration: 1000
+                }
+            ]
+        },
+
+
+
 
 
     ]
