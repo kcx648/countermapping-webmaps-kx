@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INFO4310 HW1</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      .box { fill: rgba(255, 255, 102, 0.3); stroke: rgb(183, 176, 159); } /* Light Yellow */
+        .violin { fill: rgba(156, 198, 152, 0.6); stroke: rgb(213, 209, 209); } /* Light Green */
+        .axis-label { font-size: 8px; fill: rgb(89, 117, 105); font-family: 'Roboto'; }
+    </style>
+</head>
+<body>
+    <svg width="900" height="900"></svg>
+    <script>
+        d3.csv("Street_Tree_List-2022-01-30_RAW.csv").then(function(data) {
+            console.log(data); // Debug: Check structure
+
+            // Ensure DBH is treated as a number
+            data.forEach(d => {
+                d.DBH = +d.DBH;  // Ensure conversion
+            });
+
+            // Count species occurrences
+            let speciesCounts = d3.rollup(data, v => v.length, d => d.qSpecies);
+            
+            let topSpecies = Array.from(speciesCounts.entries())
+                                 .sort((a, b) => d3.descending(a[1], b[1]))
+                                 .slice(0, 20) // Limit to 20 species
+                                 .map(d => d[0]); // Extract species names only
+
+            console.log(topSpecies); // Debug: Check if species list is populated
+
+            // Filter data properly
+            let filteredData = data.filter(d => topSpecies.includes(d.qSpecies));
+
+            console.log(filteredData); // Debug: Check if filtered data exists
+
+            // Set dimensions
+            let margin = {top: 40, right: 150, bottom: 150, left: 80},
+                width = 1200 - margin.left - margin.right,
+                height = 600 - margin.top - margin.bottom;
+            
+            let svg = d3.select("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            // Create scales
+            let x = d3.scaleBand()
+                      .domain(topSpecies)
+                      .range([0, width])
+                      .padding(0.5);
+            
+            let y = d3.scaleLinear()
+                      .domain([0, 40])
+                      .range([height, 0]);
+            
+            // Kernel Density Estimation Function
+            function kernelDensityEstimator(kernel, X) {
+                return function(V) {
+                    return X.map(x => [x, d3.mean(V, v => kernel(x - v)) || 0]);
+                };
+            }
+            function kernelEpanechnikov(k) {
+                return function(v) {
+                    return Math.abs(v / k) <= 1 ? 0.75 * (1 - (v / k) ** 2) / k : 0;
+                };
+            }
+            
+            let kde = kernelDensityEstimator(kernelEpanechnikov(5), d3.range(0, d3.max(filteredData, d => d.DBH), 1));
+            
+            topSpecies.forEach(species => {
+                let speciesData = filteredData.filter(d => d.qSpecies === species).map(d => d.DBH);
+                if (speciesData.length === 0) return;
+                
+                let density = kde(speciesData);
+                let xPos = x(species) + x.bandwidth() / 2;
+                let area = d3.area()
+                    .x(d => xPos - d[1] * 100)
+                    .y(d => y(d[0]))
+                    .x1(d => xPos + d[1] * 100);
+                
+                svg.append("path")
+                   .datum(density)
+                   .attr("class", "violin")
+                   .attr("d", area);
+            });
+            
+            // Box plot
+            topSpecies.forEach(species => {
+                let speciesData = filteredData.filter(d => d.qSpecies === species).map(d => d.DBH);
+                if (speciesData.length === 0) return;
+                
+                let q1 = d3.quantile(speciesData, 0.25);
+                let median = d3.quantile(speciesData, 0.5);
+                let q3 = d3.quantile(speciesData, 0.75);
+                let min = d3.min(speciesData);
+                let max = d3.max(speciesData);
+                let xPos = x(species) + x.bandwidth() / 2;
+                
+                svg.append("line")
+                   .attr("x1", xPos)
+                   .attr("x2", xPos)
+                   .attr("y1", y(min))
+                   .attr("y2", y(max))
+                   .attr("stroke", "rgb(183, 165, 144)");
+                
+                svg.append("rect")
+                   .attr("x", xPos - 10)
+                   .attr("y", y(q3))
+                   .attr("width", 20)
+                   .attr("height", y(q1) - y(q3))
+                   .attr("class", "box");
+                
+                svg.append("line")
+                   .attr("x1", xPos - 10)
+                   .attr("x2", xPos + 10)
+                   .attr("y1", y(median))
+                   .attr("y2", y(median))
+                   .attr("stroke", "rgb(183, 165, 144)");
+         
+               // Outliers
+               speciesData.forEach(d => {
+                    if (d < q1 - 1.5 * (q3 - q1) || d > q3 + 1.5 * (q3 - q1)) {
+                        svg.append("circle")
+                           .attr("cx", xPos)
+                           .attr("cy", y(d))
+                           .attr("r", 3)
+                           .attr("class", "outlier")
+                           .attr("fill", "rgb(183, 215, 184)");
+                    }
+                });
+            });
+            
+            // Axes
+            svg.append("g")
+               .attr("transform", `translate(0,${height})`)
+               .call(d3.axisBottom(x))
+               .selectAll("text")
+               .attr("class", "axis-label")
+               .attr("transform", "rotate(-45)")
+               .attr("text-anchor", "end");
+            
+            svg.append("g")
+               .call(d3.axisLeft(y))
+               .selectAll("text").attr("class", "axis-label");
+        });
+    </script>
+</body>
+</html>
